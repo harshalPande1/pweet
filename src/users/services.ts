@@ -7,7 +7,7 @@ class UserServices {
 
     public create = async (body: iUser): Promise<string> => {
         try {
-            let password = bcrypt.hash(body.password, 10);
+            let password = await bcrypt.hash(body.password, 10);
             await this.userModel.create({ ...body, password: password });
             return "user registerd successfully..."
         } catch (error) {
